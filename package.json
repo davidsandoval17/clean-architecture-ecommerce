@@ -2,6 +2,9 @@
   "name": "clean-architecture-ecommerce",
   "module": "index.ts",
   "type": "module",
+  "scripts": {
+    "test": "bun test --watch"
+  },
   "devDependencies": {
     "@types/bun": "latest",
     "eslint": "^8.0.1",
@@ -13,5 +16,9 @@
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@types/crypto-js": "^4.2.2",
+    "crypto-js": "^4.2.0"
   }
 }
