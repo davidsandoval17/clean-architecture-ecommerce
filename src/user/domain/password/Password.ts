@@ -27,18 +27,21 @@ export class Password {
     return regex.test(password)
   }
 
+  public isHashed(): boolean {
+    return this.cryptManage.isEncrypted(this._value)
+  }
+
   public encryptPassword(): void {
+    if (this.isHashed()) {
+      return
+    }
     this._value = this.cryptManage.encrypt(this._value)
   }
 
-  public decryptPassword(): void {
-    this._value = this.cryptManage.decrypt(this._value)
-  }
-
-  public comparePassword(
-    plainTextPassword: string,
-    cipherTextPassword: string,
-  ): boolean {
-    return this.cryptManage.compare(plainTextPassword, cipherTextPassword)
+  public comparePassword(plainTextPassword: string): boolean {
+    if (this.isHashed()) {
+      return this.cryptManage.compare(plainTextPassword, this._value)
+    }
+    return this._value === plainTextPassword
   }
 }

@@ -1,22 +1,19 @@
-import type { UserId, UserEntityProps, UserProps } from './User.interface.ts'
-import { Role } from './User.interface.ts'
+import type { IUser } from './IUser.ts'
+
+import { Role } from './enums/Role.ts'
 
 export class User {
-  private readonly _props: UserEntityProps
+  private readonly _props: IUser
 
-  protected constructor(props: UserEntityProps) {
+  protected constructor(props: IUser) {
     this._props = props
   }
 
-  get props(): UserProps {
-    return {
-      ...this._props,
-      email: this._props.email.value,
-      password: this._props.password.value,
-    }
+  get props() {
+    return this._props
   }
 
-  public static create(props: UserEntityProps): User {
+  public static create(props: IUser): User {
     return new User(props)
   }
 
