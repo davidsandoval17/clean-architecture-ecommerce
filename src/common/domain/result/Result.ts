@@ -1,9 +1,9 @@
 type Fail<L> = { kind: 'fail'; value: L }
 type Ok<R> = { kind: 'ok'; value: R }
-type ResultValue<L, R> = Fail<L> | Ok<R>
+type IResult<L, R> = Fail<L> | Ok<R>
 
 export class Result<L, R> {
-  private constructor(private readonly result: ResultValue<L, R>) {}
+  private constructor(private result: IResult<L, R>) {}
 
   isFail(): boolean {
     return this.result.kind === 'fail'
@@ -21,8 +21,20 @@ export class Result<L, R> {
     return new Result<L, any>({ kind: 'fail', value })
   }
 
-  getValue(): ResultValue<L, R> {
-    return this.result
+  getFailValue(): L {
+    if (this.result.kind === 'ok') {
+      throw new Error('Get fail value error')
+    }
+
+    return this.result.value
+  }
+
+  getValue(): R {
+    if (this.result.kind === 'fail') {
+      throw new Error('Get ok value error')
+    }
+
+    return this.result.value
   }
 
   fold(failFn: (left: L) => void, okFn: (right: R) => void): void {

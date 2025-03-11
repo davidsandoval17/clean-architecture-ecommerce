@@ -13,15 +13,15 @@ describe('result test', () => {
   test('should return the ok value when result variable is defined as "ok"', () => {
     const result = Result.ok('example')
     expect(result.isOk()).toBe(true)
-    expect(result.getValue()).toEqual({ kind: 'ok', value: 'example' })
+    expect(result.getValue()).toEqual('example')
   })
 
   test('should return the fail value when result variable is defined as "fail"', () => {
     const result = Result.fail({ code: 304, message: 'is fail code' })
     expect(result.isFail()).toBe(true)
-    expect(result.getValue()).toEqual({
-      kind: 'fail',
-      value: { code: 304, message: 'is fail code' },
+    expect(result.getFailValue()).toEqual({
+      code: 304,
+      message: 'is fail code',
     })
   })
 
@@ -29,10 +29,7 @@ describe('result test', () => {
     const resultSuccess = isPar(2)
     const resultFail = isPar(3)
 
-    expect(resultSuccess.getValue()).toEqual({ kind: 'ok', value: 4 })
-    expect(resultFail.getValue()).toEqual({
-      kind: 'fail',
-      value: 'number 3 not par',
-    })
+    expect(resultSuccess.getValue()).toEqual(4)
+    expect(resultFail.getFailValue()).toEqual('number 3 not par')
   })
 })
