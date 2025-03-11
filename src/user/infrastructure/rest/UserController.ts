@@ -54,9 +54,9 @@ export class UserController {
     }
 
     return {
-      error: '',
-      message: '',
-      statusCode: 0,
+      error: 'Unexpected',
+      message: 'Error desconocido',
+      statusCode: 500,
     }
   }
 
