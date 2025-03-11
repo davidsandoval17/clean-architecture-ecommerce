@@ -78,7 +78,7 @@ Antes de comenzar, asegúrate de tener instaladas las siguientes herramientas:
    Iniciar el servidor en modo desarrollo
 
    ```bash
-   bun dev
+   bun run dev
    ```
    Este comando levanta el servidor Fastify con recarga automática, si está configurado.
    
@@ -94,7 +94,7 @@ Antes de comenzar, asegúrate de tener instaladas las siguientes herramientas:
    Ejecutar pruebas unitarias e integrales
 
    ```bash
-   bun test
+   bun run test
    ```
    Ejecuta todas las pruebas utilizando Supertest, asegurando la calidad del código a través de TDD.
    
@@ -102,9 +102,17 @@ Antes de comenzar, asegúrate de tener instaladas las siguientes herramientas:
    Compilar el proyecto (si es necesario)
 
    ```bash
-  bun build
+  bun run build
    ```
    Transpila el código TypeScript a JavaScript. Este paso es opcional si Bun se encarga de la ejecución directa del código TS.
+
+   ### Changelog
+   Generar la documentación de la versión
+    
+   ```bash
+   bun run changelog
+   ```
+   Se generará automaticamente el changelog de la ultima versión revisada
 
 ## ✅ Buenas Prácticas
    * **Clean Architecture:**
